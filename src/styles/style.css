@@ -1,0 +1,13 @@
+@import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
+* {
+  -webkit-box-sizing: border-box !important;
+          box-sizing: border-box !important;
+}
+
+html,
+body {
+  font-size: 12px;
+  font-family: 'Noto Sans TC' !important;
+  line-height: 1.5;
+}
+/*# sourceMappingURL=style.css.map */

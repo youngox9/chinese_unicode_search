@@ -1,0 +1,175 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  // browser指定true，可以使用global變數 (windows,documents..)
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "jest": true
+  },
+  "plugins": [
+    "react-hooks"
+  ],
+  // "off" or 0 - turn the rule off
+  // "warn" or 1 - turn the rule on as a warning (doesn’t affect exit code)
+  // "error" or 2 - turn the rule on as an error (exit code is "warn" when triggered)
+  "rules": {
+    "indent": [
+      "off"
+    ],
+    "no-case-declarations": [
+      "off"
+    ],
+    "react/jsx-props-no-spreading": [
+      "off"
+    ],
+    "react/jsx-filename-extension": [
+      "off"
+    ],
+    "react/prefer-stateless-function": [
+      "off"
+    ],
+    "class-methods-use-this": [
+      "off"
+    ],
+    "no-console": [
+      "off"
+    ],
+    // webpack resolve alias
+    "import/no-extraneous-dependencies": [
+      "off"
+    ],
+    // webpack resolve alias
+    "import/no-unresolved": [
+      "off"
+    ],
+    // webpack resolve alias
+    "import/extensions": [
+      "off"
+    ],
+    "arrow-body-style": [
+      "off"
+    ],
+    // 動態加載
+    "import/no-webpack-loader-syntax": [
+      "off"
+    ],
+    "comma-dangle": [
+      "off"
+    ],
+    "global-require": [
+      "off"
+    ],
+    "no-underscore-dangle": [
+      "off"
+    ],
+    "max-len": [
+      "off"
+    ],
+    "jsx-a11y/no-static-element-interactions": [
+      "off"
+    ],
+    "react/no-find-dom-node": [
+      "off"
+    ],
+    "react/no-array-index-key": [
+      "off"
+    ],
+    "no-mixed-operators": [
+      "off"
+    ],
+    "prefer-arrow-callback": [
+      "off"
+    ],
+    "arrow-parens": [
+      "off"
+    ],
+    "react/jsx-boolean-value": [
+      "off"
+    ],
+    "no-param-reassign": [
+      "off"
+    ],
+    "no-plusplus": [
+      "off"
+    ],
+    "prefer-const": [
+      "off"
+    ],
+    "dot-notation": [
+      "off"
+    ],
+    "no-await-in-loop": [
+      "off"
+    ],
+    "function-paren-newline": [
+      "off"
+    ],
+    "object-curly-newline": [
+      "off"
+    ],
+    "no-multi-spaces": [
+      "off"
+    ],
+    "jsx-a11y/label-has-for": [
+      "off",
+      {
+        "components": [
+          "Label"
+        ],
+        "required": {
+          "every": [
+            "nesting",
+            "id"
+          ]
+        },
+        "allowChildren": false
+      }
+    ],
+    "react/default-props-match-prop-types": [
+      "off"
+    ],
+    "react/no-unused-state": [
+      "warn"
+    ],
+    "react/forbid-prop-types": [
+      "error"
+    ],
+    "no-unused-vars": [
+      "warn"
+    ],
+    "no-debugger": [
+      "error"
+    ],
+    "react/prop-types": [
+      "off"
+    ],
+    "no-trailing-spaces": [
+      "error"
+    ],
+    //最下面要有下一行 require or disallow newline at the end of files
+    "eol-last": [
+      "error"
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": [
+          "Link"
+        ],
+        "specialLink": [
+          "to"
+        ]
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": true
+      }
+    ]
+  }
+}
