@@ -1,0 +1,374 @@
+//https://jonsuh.com/hamburgers/
+@import "bourbon/bourbon";
+@import "neat/neat";
+@import "variable.scss";
+$color:#009bde;
+$width:40px;
+$height:4px;
+$logoW:20%;
+$nH:64px;
+.navbar {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    white-space: nowrap;
+    z-index: 996;
+    background-color: white;
+    box-shadow: 1px 4px 3px rgba(170, 170, 170, 0.19);
+    &.affix {
+        .nav {
+            .logo {
+                display: none;
+            }
+            .affix-logo {
+                display: block;
+            }
+        }
+    }
+    li {
+        img {
+            width: 100%;
+        }
+        a,
+        h1,
+        h2,
+        img {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            color: $blue80;
+        }
+    }
+    .side-menu {
+        position: absolute;
+        right: 0;
+        top: 0;
+        >a {
+            display: inline-block;
+            position: relative;
+            padding: 0.4em 0.6em;
+            color: white;
+            &:last-child:before {
+                @include transform(translate(6%, 0)skewX(0deg));
+            }
+            &:hover:after,
+            &:hover:before {
+                background-color: #1b82ad;
+            }
+            &:after,
+            &:before {
+                content: '';
+                position: absolute;
+                @include full-size();
+                background-color: #7fd8b8;
+                border-radius: 6px;
+                @include transform(skewX(20deg));
+                z-index: -1;
+                border: 1px solid transparent;
+                @include transition(0.3s ease all);
+            }
+        }
+        span {
+            vertical-align: middle;
+            display: inline-block;
+            margin-right: 6px;
+            font-size: 1em;
+        }
+        .icon {
+            width: 18px;
+            margin-right: 4px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    .nav-head {
+        display: none;
+        width: 100%;
+        height: $nH;
+        position: relative;
+        z-index: 2;
+        background-color: white;
+        @include media(max-width $md) {
+            display: block;
+        }
+        .logo {
+            position: absolute;
+            height: 80%;
+            top: 50%;
+            left: 50%;
+            @include transform(translate(-50%, -50%));
+        }
+        .hm {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: $nH;
+            height: $nH;
+        }
+    }
+    .nav {
+        display: block;
+        margin: 0 auto;
+        max-width: $lg;
+        z-index: 1;
+        text-align: center;
+        @include transition(0.3s ease all);
+        @include media(max-width $md) {
+            position: fixed;
+            @include full-size();
+            padding-top: $nH + 12px;
+            overflow-y: auto;
+            background-color: white;
+            @include transform(translate(100%, 0));
+            &.active {
+                box-shadow: -2px 3px 16px #aaa;
+                @include transform(translate(0%, 0));
+            }
+        }
+        .affix-logo {
+            display: block;
+            margin: 0 auto;
+            width: 20%;
+            display: none;
+        }
+        >li {
+            width: (100% - $logoW) / 6;
+            display: inline-block;
+            vertical-align: bottom;
+            text-align: center;
+            position: relative;
+            font-size: 1.2em;
+            @include bolder();
+            @include media(max-width $md) {
+                width: 100%;
+                display: block;
+                font-size: 1.4em;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    width: 90%;
+                    left: 5%;
+                    height: 1px;
+                    background-color: #aaa;
+                }
+                &.active > h2:after {
+                    @include transform(rotate(180deg));
+                }
+            }
+            .icon {
+                width: 40%;
+                margin: 0 auto;
+                display: block;
+                @include media(max-width $md) {
+                    display: none;
+                }
+            }
+            .sub {
+                display: block;
+                position: absolute;
+                top: 100%;
+                width: 100%;
+                text-align: left;
+                white-space: nowrap;
+                >a {
+                    &:first-child {
+                        width: 100%;
+                    }
+                    text-align: center;
+                    display: inline-block;
+                }
+            }
+            >h2 {
+                position: relative;
+                display: block;
+                // padding: 6%;
+                padding-bottom: 12%;
+                color: $blue80;
+                @include transition(0.3s ease all);
+                &:after {
+                    $size: 10px;
+                    content: '';
+                    width: $size;
+                    padding-bottom: $size;
+                    position: absolute;
+                    left: 50%;
+                    bottom: 5%;
+                    opacity: 0;
+                    @include transform(translate(-50%, 0));
+                    @include transition(0.3s ease all);
+                    @include transform-origin(center);
+                    background: url('../img/icon_com01.png') center/contain no-repeat;
+                }
+                &:hover,
+                &.active {
+                    color: #43a884;
+                    &:after {
+                        opacity: 1;
+                        display: block;
+                    }
+                }
+                @include media(max-width $md) {
+                    font-size: 1.2em;
+                    padding: 6% 0;
+                }
+                >a {
+                    position: absolute;
+                    @include full-size();
+                }
+                &:hover>ul {
+                    opacity: 1;
+                    visibility: visible;
+                    &:after {
+                        opacity: 1;
+                        @include transform(scaleY(1));
+                    }
+                }
+                $lineH:3em;
+                $barH:$lineH*0.89;
+                >ul {
+                    position: absolute;
+                    top: 100%;
+                    white-space: nowrap;
+                    width: 100%;
+                    opacity: 0;
+                    visibility: hidden;
+                    display: block;
+                    @include transition(0.3s ease all);
+                    @include media(max-width $md) {
+                        position: relative;
+                        opacity: 1;
+                        visibility: visible;
+                        padding: 6px;
+                        margin-top: 12px;
+                        display: none;
+                        @include transition(0s ease all);
+                    }
+                    &:after {
+                        content: '';
+                        position: fixed;
+                        left: 0;
+                        width: 100%;
+                        height: $barH;
+                        background-color: #43a884;
+                        z-index: -1;
+                        opacity: 0;
+                        box-shadow: 1px 4px 3px rgba(170, 170, 170, 0.19);
+                        @include transition(0.3s ease all);
+                        @include transform(scaleY(0));
+                        @include transform-origin(top);
+                        @include media(max-width $md) {
+                            display: none;
+                        }
+                    }
+                    >a {
+                        line-height: $lineH;
+                        display: inline-block;
+                        margin-right: 8px;
+                        color: white;
+                        position: relative;
+                        font-size: 0.9em;
+                        margin-right: 0;
+                        text-align: center;
+                        padding: 0 15%;
+                        overflow: hidden;
+                        @include transition(0.3s ease all);
+                        &:first-child {
+                            margin-left: 0;
+                        }
+                        @include media(max-width $md) {
+                            display: block;
+                            width: 100%;
+                            color: $blue80;
+                        }
+                        &:hover {
+                            background-color: #78b7a0;
+                        }
+                        &:last-child:after {
+                            display: none;
+                        }
+                        &:after {
+                            $h: 60%;
+                            content: '';
+                            position: absolute;
+                            height: $h;
+                            width: 1px;
+                            right: 0;
+                            top: (100% - $h) / 2;
+                            background-color: white;
+                            @include media(max-width $md) {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            &.logo {
+                width: $logoW;
+                padding-bottom: 6px;
+                @include transition(0.3s ease width);
+                @include media(max-width $md) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.footer {
+    background-color: $blue80;
+    >.scrollTop {
+        display: block;
+        background: url(../img/icon_up.png) #b4b4b6 center/auto 40% no-repeat;
+        width: 100%;
+        height: 32px;
+        cursor: pointer;
+        @include transition(0.3s ease all);
+        &:hover {
+            opacity: 0.8;
+            @include transform(scale(1.06));
+        }
+    }
+    >.wrapper {
+        display: block;
+        width: 100%;
+        max-width: $lg;
+        margin: 0 auto;
+        padding: 6px;
+        >.logo {
+            display: block;
+            width: 50%;
+            @include media(max-width $md) {
+                display: none;
+            }
+        }
+        >.logo-m {
+            display: none;
+            @include media(max-width $md) {
+                display: block;
+                width: 50%;
+                margin: 0 auto;
+                margin-bottom: 48px;
+            }
+        }
+        >p {
+            text-align: right;
+            color: white;
+            line-height: 2em;
+            @include media(max-width $md) {
+                text-align: center;
+            }
+        }
+    }
+    >.bottom {
+        display: block;
+        background-color: white;
+        text-align: center;
+        font-size: 0.4em;
+        padding: 12px 0;
+        color: $blue60;
+        white-space: nowrap;
+    }
+}

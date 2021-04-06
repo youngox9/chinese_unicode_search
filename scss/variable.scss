@@ -1,0 +1,42 @@
+// @import "bourbon/bourbon";
+// @import "neat/neat";
+$blue80:#07308c;
+$blue60:#3db7e4;
+$orange60:#f3b657;
+$cyan20: #98c2d8;
+$md:768px;
+$lg:1024px;
+
+@mixin full-size() {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+@mixin box-sizing() {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@mixin omega-reset($nth) {
+    &:nth-child(#{$nth}) {
+        margin-right: flex-gutter();
+    }
+
+    &:nth-child(#{$nth}+1) {
+        clear: none
+    }
+}
+
+@mixin ellipsis() {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@mixin bolder() {
+    font-weight: 400;
+    //    font-family: "cwtexhei600", "微軟正黑體", 'Helvetica', 'Arial', 'Hiragino Kaku Gothic ProN', 'sans-serif'!important;
+}

@@ -11,6 +11,7 @@ module.exports = {
     publicPath: '/'
   },
   devServer: {
+    contentBase: path.join(__dirname, 'dist'),
     port: 8888,
     open: true,
     hot: true,
@@ -47,9 +48,6 @@ module.exports = {
           'postcss-loader',
           {
             loader: 'less-loader',
-            options: {
-              javascriptEnabled: true
-            }
           }
         ]
       },
@@ -75,8 +73,10 @@ module.exports = {
     alias: {
       '~~src': path.resolve(__dirname, 'src'),
       '~~containers': path.resolve(__dirname, 'src', 'containers'),
+      '~~components': path.resolve(__dirname, 'src', 'components'),
       '~~static': path.resolve(__dirname, 'src', 'static'),
       '~~styles': path.resolve(__dirname, 'src', 'styles'),
+      '~~api': path.resolve(__dirname, 'src', 'api', 'index.js'),
     },
     extensions: [
       '.js',
@@ -88,9 +88,7 @@ module.exports = {
     ]
   },
   optimization: {
-    // splitChunks: {
-    //   chunks: 'all'
-    // }
+    splitChunks: false
   },
   plugins: [
     () => autoprefixer({

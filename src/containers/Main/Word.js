@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function Word(props) {
-  const { word, unicode, showWord = true, showGrid } = props;
+  const { word, unicode, showWord = true, showGrid, girdColor } = props;
   return (
     <>
       <svg
@@ -15,7 +15,7 @@ function Word(props) {
       >
         <defs>
           <style>
-            {`.st0{fill:none;stroke:#C6E5DF;stroke-width:0.85;stroke-miterlimit:10;}
+            {`.st0{fill:none;stroke:${girdColor};stroke-width:0.03em;stroke-miterlimit:10;}
    .st1{font-family: '標楷體', 'PMingLiU';}
    .st2{font-size:62px;}
    .st3{font-size:15px;}

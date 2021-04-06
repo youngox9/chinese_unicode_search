@@ -11,19 +11,31 @@ export function hexReverse(hex) {
 export function getWords(range = []) {
   return range.reduce((prev, curr, index) => {
     let words = [];
-    const [fromCode, toCode] = curr;
-    let from = hexCovert(fromCode);
-    let to = hexCovert(toCode);
-    for (let i = from; i < to; i++) {
-      let word = String.fromCharCode(i);
-      const unicode = hexReverse(i);
-      words.push({
+    if (Array.isArray(curr)) {
+      const [fromCode, toCode] = curr;
+      let from = hexCovert(fromCode);
+      let to = hexCovert(toCode);
+      for (let i = from; i < to; i++) {
+        let word = String.fromCharCode(i);
+        const unicode = hexReverse(i);
+        words.push({
+          key: uuidv4(),
+          unicode,
+          word,
+        });
+      }
+      return [...prev, ...words];
+    } if (typeof curr === 'string') {
+      const uniIndex = hexCovert(curr.toUpperCase());
+      let word = String.fromCharCode(uniIndex);
+      // console.log(unicode, word);
+      return [...prev, {
         key: uuidv4(),
-        unicode,
+        unicode: curr,
         word,
-      });
+      }];
     }
-    return [...prev, ...words];
+    return prev;
   }, []);
 }
 
@@ -52,7 +64,7 @@ export function svgToImg(svgString, format = 'image/png') {
     let url = URL.createObjectURL(svg);
 
     img.onload = async () => {
-      const maxW = 200;
+      const maxW = 500;
       canvas.width = maxW;
       canvas.height = img.height * maxW / img.width;
       ctx.drawImage(img, 0, 0);
@@ -63,3 +75,12 @@ export function svgToImg(svgString, format = 'image/png') {
     img.src = url;
   });
 }
+
+export const toUnicode = function (char) {
+  let result = [];
+  for (let i = 0; i < char.length; i++) {
+    // Assumption: all characters are < 0xffff
+    result.push(`\\u${(`000${char[i].charCodeAt(0).toString(16)}`).substr(-4)}`);
+  }
+  return result;
+};
